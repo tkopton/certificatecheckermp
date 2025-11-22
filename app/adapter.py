@@ -53,6 +53,8 @@ def httpsEndpoints_configFile(adapter_instance: AdapterInstance) -> str:
 
 def get_config_file_data(adapter_instance: AdapterInstance, configFile) -> str:
     apiPath = f"api/configurations/files?path=SolutionConfig/{configFile}.xml"
+    logger.debug("apiPath: ")
+    logger.debug(apiPath)
     with adapter_instance.suite_api_client as suite_api:
         getConfigFile = suite_api.get(url = apiPath)
     if getConfigFile.ok:
@@ -85,8 +87,11 @@ def collect(adapter_instance: AdapterInstance) -> CollectResult:
     with Timer(logger, "Collection"):
         result = CollectResult()
         try:
-            # TODO: Add collection logic
-            pass  # TODO: Remove pass statement
+            httpEndpointsConfigFile = httpsEndpoints_configFile(adapter_instance)
+            httpEndpoints = get_config_file_data(adapter_instance, httpEndpointsConfigFile)
+            for endpoint in httpEndpoints:
+                logger.debug(f"Processing endpoint: {endpoint}")
+                pass # TODO: Remove pass statement and add collection logic
 
         except Exception as e:
             logger.error("Unexpected collection error")
