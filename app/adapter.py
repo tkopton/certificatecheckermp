@@ -4,6 +4,7 @@ import sys
 from typing import List
 
 import aria.ops.adapter_logging as logging
+import xml.etree.ElementTree as ET
 from aria.ops.adapter_instance import AdapterInstance
 from aria.ops.definition.adapter_definition import AdapterDefinition
 from aria.ops.result import CollectResult
@@ -17,23 +18,17 @@ logger = logging.getLogger(__name__)
 
 
 def get_adapter_definition() -> AdapterDefinition:
-    """
-    The adapter definition defines the object types and attribute types (metric/property) that are present
-    in a collection. Setting these object types and attribute types helps VMware Aria Operations to
-    validate, process, and display the data correctly.
-    :return: AdapterDefinition
-    """
     with Timer(logger, "Get Adapter Definition"):
         definition = AdapterDefinition(ADAPTER_KIND, ADAPTER_NAME)
 
-        # TODO: Add parameters and credentials
+        definition.define_string_parameter(
+            "https_endpoints",
+            label="List of SSL/TLS secured endpoints",
+            description="Enter the configuration file name that contains the list of SSL/TLS secured endpoints to connect to.",
+            default="tk-https_endpoints",
+            required=True,
+        )
 
-        # The key 'container_memory_limit' is a special key read by the VMware Aria Operations
-        # collector to determine how much memory to allocate to the docker container running
-        # this adapter. It does not need to be read inside the adapter code. However, removing
-        # the definition from the object model will remove the ability to change the container
-        # memory limit during the adapter's configuration, and the VMware Aria Operations collector
-        # will give 1024 MB of memory to the container running the adapter instance.
         definition.define_int_parameter(
             "container_memory_limit",
             label="Adapter Memory Limit (MB)",
@@ -44,24 +39,35 @@ def get_adapter_definition() -> AdapterDefinition:
             default=1024,
         )
 
-        # TODO: Add object types, including identifiers, metrics, and properties
+        httpsEndpoint_instance = definition.define_object_type(
+            "httpsEndpoint_resource_kind", "httpsEndpoint")
+        httpsEndpoint_instance.define_metric(
+            "remainig_days", "Remaining Days")
 
         logger.debug(f"Returning adapter definition: {definition.to_json()}")
         return definition
 
+def httpsEndpoints_configFile(adapter_instance: AdapterInstance) -> str:
+    httpsEndpoints_config_file = adapter_instance.get_identifier_value("https_endpoints")
+    return httpsEndpoints_config_file
+
+def get_config_file_data(adapter_instance: AdapterInstance, configFile) -> str:
+    apiPath = f"api/configurations/files?path=SolutionConfig/{configFile}.xml"
+    with adapter_instance.suite_api_client as suite_api:
+        getConfigFile = suite_api.get(url = apiPath)
+    if getConfigFile.ok:
+        lines = getConfigFile.text
+        parsedResponse = ET.fromstring(lines)
+        formattedLines = parsedResponse.text.strip().split(',')
+        objectList = []
+        for line in formattedLines:
+            objectList.append(line.strip())
+        return objectList
 
 def test(adapter_instance: AdapterInstance) -> TestResult:
     with Timer(logger, "Test"):
         result = TestResult()
         try:
-            # A typical test connection will generally consist of:
-            # 1. Read identifier values from adapter_instance that are required to
-            #    connect to the target(s)
-            # 2. Connect to the target(s), and retrieve some sample data
-            # 3. Disconnect cleanly from the target (ensure this happens even if an
-            #    error occurs)
-            # 4. If any of the above failed, return an error, otherwise pass.
-
             # TODO: Add connection testing logic
             pass  # TODO: Remove pass statement
 
@@ -79,15 +85,6 @@ def collect(adapter_instance: AdapterInstance) -> CollectResult:
     with Timer(logger, "Collection"):
         result = CollectResult()
         try:
-            # A typical collection will generally consist of:
-            # 1. Read identifier values from adapter_instance that are required to
-            #    connect to the target(s)
-            # 2. Connect to the target(s), and retrieve data
-            # 3. Add the data into a CollectResult's objects, properties, metrics, etc
-            # 4. Disconnect cleanly from the target (ensure this happens even if an
-            #    error occurs)
-            # 5. Return the CollectResult.
-
             # TODO: Add collection logic
             pass  # TODO: Remove pass statement
 
@@ -104,26 +101,6 @@ def collect(adapter_instance: AdapterInstance) -> CollectResult:
 def get_endpoints(adapter_instance: AdapterInstance) -> EndpointResult:
     with Timer(logger, "Get Endpoints"):
         result = EndpointResult()
-        # In the case that an SSL Certificate is needed to communicate to the target,
-        # add each URL that the adapter uses here. Often this will be derived from a
-        # 'host' parameter in the adapter instance. In this Adapter we don't use any
-        # HTTPS connections, so we won't add any. If we did, we might do something like
-        # this:
-        # result.with_endpoint(adapter_instance.get_identifier_value("host"))
-        #
-        # Multiple endpoints can be returned, like this:
-        # result.with_endpoint(adapter_instance.get_identifier_value("primary_host"))
-        # result.with_endpoint(adapter_instance.get_identifier_value("secondary_host"))
-        #
-        # This 'get_endpoints' method will be run before the 'test' method,
-        # and VMware Aria Operations will use the results to extract a certificate from
-        # each URL. If the certificate is not trusted by the VMware Aria Operations
-        # Trust Store, the user will be prompted to either accept or reject the
-        # certificate. If it is accepted, the certificate will be added to the
-        # AdapterInstance object that is passed to the 'test' and 'collect' methods.
-        # Any certificate that is encountered in those methods should then be validated
-        # against the certificate(s) in the AdapterInstance.
-
         # TODO: Add any additional endpoints if any
 
         logger.debug(f"Returning endpoints: {result.get_json()}")
@@ -133,15 +110,9 @@ def get_endpoints(adapter_instance: AdapterInstance) -> EndpointResult:
 # Main entry point of the adapter. You should not need to modify anything below this line.
 def main(argv: List[str]) -> None:
     logging.setup_logging("adapter.log")
-    # Start a new log file by calling 'rotate'. By default, the last five calls will be
-    # retained. If the logs are not manually rotated, the 'setup_logging' call should be
-    # invoked with the 'max_size' parameter set to a reasonable value, e.g.,
-    # 10_489_760 (10MB).
     logging.rotate()
     logger.info(f"Running adapter code with arguments: {argv}")
     if len(argv) != 3:
-        # `inputfile` and `outputfile` are always automatically appended to the
-        # argument list by the server
         logger.error("Arguments must be <method> <inputfile> <ouputfile>")
         sys.exit(1)
 
