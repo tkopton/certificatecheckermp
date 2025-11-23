@@ -45,18 +45,27 @@ def get_adapter_definition() -> AdapterDefinition:
 
         httpsEndpoint_instance = definition.define_object_type(
             "httpsEndpoint_resource_kind", "httpsEndpoint")
-        
-        # TODO: Define all metrics and properties
-        # Negotiated protocol: TLSv1.2
-        # Protocol family: TLS
-        # Cipher suite: ECDHE-RSA-AES256-GCM-SHA384
-        # Cipher protocol label: TLSv1.2
-        # Cipher bits: 256
-        # Certificate expires: Jul  6 23:59:59 2026 GMT
-        # Days until expiry: 225
 
         httpsEndpoint_instance.define_metric(
-            "remainig_days", "Remaining Days")
+            "remainig_days", "Days until expiry")
+
+        httpsEndpoint_instance.define_metric(
+            "cypher_bits", "Cipher bits")
+
+        httpsEndpoint_instance.define_string_property(
+            "negotiated_protocol", "Negotiated protocol")
+        
+        httpsEndpoint_instance.define_string_property(
+            "protocol_family", "Protocol family")
+        
+        httpsEndpoint_instance.define_string_property(
+            "cipher_suite", "Cipher suite")
+        
+        httpsEndpoint_instance.define_string_property(
+            "cipher_protocol_label", "Cipher protocol label")
+
+        httpsEndpoint_instance.define_string_property(
+            "certificate_expires", "Certificate expires")
 
         logger.debug(f"Returning adapter definition: {definition.to_json()}")
         return definition
