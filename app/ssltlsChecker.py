@@ -4,6 +4,9 @@ import ssl
 from datetime import datetime, timezone
 import re
 import warnings
+import logging
+from constants import ADAPTER_KIND
+from constants import ADAPTER_NAME
 
 # suppress deprecation warnings about TLSVersion lookups (selective)
 warnings.filterwarnings(
@@ -13,7 +16,7 @@ warnings.filterwarnings(
 )
 
 DEFAULT_TIMEOUT = 5.0
-
+logger = logging.getLogger(__name__)
 
 def parse_endpoint(ep):
     ep = ep.strip()
@@ -125,58 +128,67 @@ def process_endpoint(result, httpsEndpoint):
     try:
         host, port = parse_endpoint(httpsEndpoint)
     except Exception as e:
-        print("Invalid endpoint:", e)
+        logger.error("Invalid endpoint:", e)
         return
 
-    print(f"Checking {host}:{port} ...")
+    # logger.debug(f"Checking {host}:{port} ...")
+    endpoint = result.object(
+                        ADAPTER_KIND, "httpsEndpoint_resource_kind", host)
 
     try:
         info = connect_and_get_cert(host, port)
     except Exception as e:
-        print("Failed to connect and get certificate:", e)
+        logger.debug("Failed to connect and get certificate:", e)
         info = None
+    
+        """
+        httpsEndpoint_instance.define_metric(
+        "remainig_days", "Days until expiry")
+
+        httpsEndpoint_instance.define_string_property(
+            "certificate_expires", "Certificate expires")
+        """
 
     if info:
         cert = info.get('cert') or {}
         cipher = info.get('cipher')
         negotiated_proto = info.get('protocol')
 
-        print()
-        print("Negotiated protocol:", negotiated_proto or "unknown")
         if negotiated_proto:
-            print("Protocol family:", "SSL" if negotiated_proto.upper().startswith("SSL") else "TLS")
+            protocolFamily=("SSL" if negotiated_proto.upper().startswith("SSL") else "TLS")
+            endpoint.with_property("protocol_family", protocolFamily)
         if cipher:
             if isinstance(cipher, (list, tuple)):
-                print("Cipher suite:", cipher[0])
+                endpoint.with_property("cipher_suite", cipher[0])
                 if len(cipher) > 1 and cipher[1]:
-                    print("Cipher protocol label:", cipher[1])
+                    endpoint.with_property("cipher_protocol_label", cipher[1])
                 if len(cipher) > 2 and cipher[2]:
-                    print("Cipher bits:", cipher[2])
+                    endpoint.with_metric("cypher_bits", cipher[2])
             else:
-                print("Cipher:", cipher)
+                logger.debug("Cipher:", cipher)
 
         notafter = cert.get('notAfter')
         if notafter:
             dt = parse_notafter(notafter)
             days = days_until(dt)
-            print()
-            print("Certificate expires:", notafter)
+            logger.debug("Certificate expires:", notafter)
             if days is not None:
-                print("Days until expiry:", days)
+                logger.debug("Days until expiry:", days)
             else:
-                print("Days until expiry: unknown (could not parse date)")
+                logger.debug("Days until expiry: unknown (could not parse date)")
         else:
-            print()
-            print("No certificate 'notAfter' field available.")
+            logger.debug("No certificate 'notAfter' field available.")
 
         subj = cert.get('subject')
         if subj:
             subj_str = ", ".join("=".join(pair) for rdn in subj for pair in rdn)
-            print("Certificate subject:", subj_str)
+            logger.debug("Certificate subject:", subj_str)
         issuer = cert.get('issuer')
         if issuer:
             issuer_str = ", ".join("=".join(pair) for rdn in issuer for pair in rdn)
-            print("Certificate issuer:", issuer_str)
+            logger.debug("Certificate issuer:", issuer_str)
+    
+        result.add_object(endpoint)
+
     else:
-        print()
-        print("Could not retrieve certificate details.")
+        logger.debug("Could not retrieve certificate details.")

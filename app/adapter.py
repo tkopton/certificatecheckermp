@@ -147,7 +147,7 @@ def collect(adapter_instance: AdapterInstance) -> CollectResult:
 
             for endpoint in httpEndpoints:
                 logger.info(f"Processing endpoint: {endpoint}")
-                process_endpoint(endpoint)
+                process_endpoint(result, endpoint)
 
         except Exception as e:
             logger.error("Unexpected collection error")
