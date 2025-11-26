@@ -4,6 +4,10 @@ from datetime import datetime, timezone
 import re
 import warnings
 import logging
+import tempfile
+import os
+import tempfile, os
+
 from constants import ADAPTER_KIND
 
 # suppress deprecation warnings about TLSVersion lookups (selective)
@@ -49,6 +53,43 @@ def connect_and_get_cert(host, port, timeout=DEFAULT_TIMEOUT):
         ssock = ctx.wrap_socket(sock, server_hostname=host)
         try:
             cert = ssock.getpeercert()
+            # If cert is empty or missing subject/issuer, try to obtain and decode the DER cert
+            if not cert or not cert.get('subject') or not cert.get('issuer'):
+                try:
+                    der = ssock.getpeercert(binary_form=True)
+                    if der:
+                        try:
+                            pem = ssl.DER_cert_to_PEM_cert(der)
+                        except Exception:
+                            pem = None
+                        if pem:
+                            try:
+                                tf = tempfile.NamedTemporaryFile(delete=False)
+                                try:
+                                    tf.write(pem.encode('ascii'))
+                                    tf.flush()
+                                    tf.close()
+                                    try:
+                                        decoded = ssl._ssl._test_decode_cert(tf.name)
+                                    except Exception:
+                                        decoded = None
+                                finally:
+                                    try:
+                                        os.unlink(tf.name)
+                                    except Exception:
+                                        pass
+                                if decoded:
+                                    # Merge decoded fields into cert dict (preserve existing keys)
+                                    if not cert:
+                                        cert = decoded
+                                    else:
+                                        for k, v in decoded.items():
+                                            if not cert.get(k):
+                                                cert[k] = v
+                            except Exception:
+                                pass
+                except Exception:
+                    pass
             cipher = ssock.cipher()  # (name, protocol, bits)
             proto = ssock.version()   # e.g. 'TLSv1.2'
             return {
@@ -101,8 +142,6 @@ def _try_decode_server_cert_via_get_server_certificate(host, port):
 
     # Try to use the internal test decoder (works on CPython).
     try:
-        import tempfile
-        import os
         tf = tempfile.NamedTemporaryFile(delete=False)
         try:
             tf.write(pem.encode('ascii'))

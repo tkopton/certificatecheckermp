@@ -30,7 +30,7 @@ def get_adapter_definition() -> AdapterDefinition:
             "https_endpoints",
             label="List of SSL/TLS secured endpoints",
             description="Enter the configuration file name that contains the list of SSL/TLS secured endpoints to connect to.",
-            default="tk-https_endpoints",
+            default="https_endpoints",
             required=True,
         )
 
@@ -44,8 +44,9 @@ def get_adapter_definition() -> AdapterDefinition:
             default=1024,
         )
 
+        # Object definitions and their metrics/properties
         httpsEndpoint_instance = definition.define_object_type(
-            "httpsEndpoint_resource_kind", "httpsEndpoint")
+            "httpsEndpoint_resource_kind", "SSL/TLS Endpoint")
 
         httpsEndpoint_instance.define_metric(
             "remainig_days", "Days until expiry")
