@@ -26,6 +26,7 @@ def get_adapter_definition() -> AdapterDefinition:
     with Timer(logger, "Get Adapter Definition"):
         definition = AdapterDefinition(ADAPTER_KIND, ADAPTER_NAME)
 
+        # Will be advanced config
         definition.define_string_parameter(
             "https_endpoints",
             label="List of SSL/TLS secured endpoints",

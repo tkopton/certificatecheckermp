@@ -12,7 +12,7 @@
         "Linux VA"
     ],
     "vendor": "VENDOR",
-    "pak_icon": "",
+    "pak_icon": "SSL-TLS-Checker.png",
     "pak_validation_script": {
         "script": ""
     },
