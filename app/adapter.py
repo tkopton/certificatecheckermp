@@ -31,7 +31,7 @@ def get_adapter_definition() -> AdapterDefinition:
             "https_endpoints",
             label="List of SSL/TLS secured endpoints",
             description="Enter the configuration file name that contains the list of SSL/TLS secured endpoints to connect to.",
-            default="https_endpoints",
+            default="ssltls_endpoints",
             required=True,
         )
 
