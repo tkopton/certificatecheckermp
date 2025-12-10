@@ -4,6 +4,8 @@ The purpose of this Management Pack is to monitor SSL and TLS certificates for e
 
 This Management Pack is designed as a modern and superior alternative to my old approach using Telegraf and scripts, as described in my blog: https://thomas-kopton.de/vblog/?p=538.
 
+![Certificate-Checker-Overview](Certificate-Checker-Overview.png)
+
 #### Collected Properties
 
 * `protocol_family`: "SSL" or "TLS"
