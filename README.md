@@ -6,17 +6,17 @@ This Management Pack is designed as a modern and superior alternative to my old 
 
 #### Collected Properties
 
-* protocol_family: "SSL" or "TLS"
-* cipher_suite: name of the negotiated cipher suite.
-* cipher_protocol_label: protocol label (when available).
-* certificate_expires: raw notAfter string from the certificate.
-* certificate_subject: certificate subject (joined RDN pairs).
-* certificate_issuer: certificate issuer (joined RDN pairs).
+* `protocol_family`: "SSL" or "TLS"
+* `cipher_suite`: name of the negotiated cipher suite.
+* `cipher_protocol_label`: protocol label (when available).
+* `certificate_expires`: raw notAfter string from the certificate.
+* `certificate_subject`: certificate subject (joined RDN pairs).
+* `certificate_issuer`: certificate issuer (joined RDN pairs).
 
 #### Collected Metrics
 
-* cypher_bits: numeric cipher bit strength
-* remainig_days: days until certificate expiry
+* `cypher_bits`: numeric cipher bit strength
+* `remainig_days`: days until certificate expiry
 
 #### Content
 
