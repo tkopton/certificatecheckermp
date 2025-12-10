@@ -1,0 +1,400 @@
+{
+   "entries": {
+      "resourceKind": [{
+         "resourceKindKey": "httpsEndpoint_resource_kind",
+         "internalId": "resourceKind:id:0_::_",
+         "adapterKindKey": "CertificateCheck"
+      }],
+      "resource": [{
+         "resourceKindKey": "httpsWorld_resource_kind",
+         "internalId": "resource:id:0_::_",
+         "adapterKindKey": "CertificateCheck",
+         "identifiers": [],
+         "name": "SSL-TLS-World"
+      }]
+   },
+   "dashboards": [{
+      "shared": false,
+      "temporary": false,
+      "hidden": false,
+      "creationTime": 1765360247068,
+      "autoswitchEnabled": false,
+      "importAttempts": 0,
+      "lastUpdateUserId": "0bffe685-4795-4860-8c2c-3dd781529753",
+      "columnProportion": "1-1",
+      "importComplete": true,
+      "description": "",
+      "columnCount": 1,
+      "widgets": [
+         {
+            "collapsed": false,
+            "id": "921bfbe5-0ec9-4c82-b9c7-666c087370eb",
+            "gridsterCoords": {
+               "w": 3,
+               "x": 1,
+               "h": 6,
+               "y": 1
+            },
+            "type": "View",
+            "title": "Cipher protocol distribution",
+            "config": {
+               "refreshInterval": 300,
+               "resource": {
+                  "resourceId": "resource:id:0_::_",
+                  "traversalSpecId": "",
+                  "resourceName": "SSL-TLS-World",
+                  "resourceKindId": "002016CertificateCheckhttpsWorld_resource_kind",
+                  "id": "Ext.vcops.chrome.model.Resource-5"
+               },
+               "traversalSpecId": null,
+               "refreshContent": {"refreshContent": false},
+               "isUpdatedView": true,
+               "chartViewItems": [
+                  "legend",
+                  "labels",
+                  "title"
+               ],
+               "selectFirstRow": {"selectFirstRow": false},
+               "selfProvider": {"selfProvider": true},
+               "title": "Cipher protocol distribution",
+               "viewDefinitionId": "fb0009e0-5993-47f3-b56e-15cf614765a8"
+            },
+            "height": 324,
+            "states": [{
+               "value": "b%3A0",
+               "key": "perm_isDashboardTime_widget_19266d5f-3df7-44f0-b426-0e6cf7c454e4_921bfbe5-0ec9-4c82-b9c7-666c087370eb"
+            }]
+         },
+         {
+            "collapsed": false,
+            "id": "52ddeb00-cfd0-4348-b1d1-2faa92c57586",
+            "gridsterCoords": {
+               "w": 3,
+               "x": 4,
+               "h": 6,
+               "y": 1
+            },
+            "type": "View",
+            "title": "Cipher cipher suite distribution",
+            "config": {
+               "refreshInterval": 300,
+               "resource": {
+                  "resourceId": "resource:id:0_::_",
+                  "traversalSpecId": "",
+                  "resourceName": "SSL-TLS-World",
+                  "resourceKindId": "002016CertificateCheckhttpsWorld_resource_kind",
+                  "id": "Ext.vcops.chrome.model.Resource-7"
+               },
+               "traversalSpecId": null,
+               "refreshContent": {"refreshContent": false},
+               "isUpdatedView": true,
+               "chartViewItems": [
+                  "legend",
+                  "labels",
+                  "title"
+               ],
+               "selectFirstRow": {"selectFirstRow": false},
+               "selfProvider": {"selfProvider": true},
+               "title": "Cipher cipher suite distribution",
+               "viewDefinitionId": "249ef5f5-6b38-401d-9761-991063d59e0d"
+            },
+            "height": 324,
+            "states": [{
+               "value": "b%3A0",
+               "key": "perm_isDashboardTime_widget_19266d5f-3df7-44f0-b426-0e6cf7c454e4_52ddeb00-cfd0-4348-b1d1-2faa92c57586"
+            }]
+         },
+         {
+            "collapsed": false,
+            "id": "a0859948-b9e2-467a-96c6-946936c354c0",
+            "gridsterCoords": {
+               "w": 3,
+               "x": 7,
+               "h": 6,
+               "y": 1
+            },
+            "type": "View",
+            "title": "Cipher key length (bits) distribution",
+            "config": {
+               "refreshInterval": 300,
+               "resource": {
+                  "resourceId": "resource:id:0_::_",
+                  "traversalSpecId": "",
+                  "resourceName": "SSL-TLS-World",
+                  "resourceKindId": "002016CertificateCheckhttpsWorld_resource_kind",
+                  "id": "Ext.vcops.chrome.model.Resource-8"
+               },
+               "traversalSpecId": null,
+               "refreshContent": {"refreshContent": false},
+               "isUpdatedView": true,
+               "chartViewItems": ["labels"],
+               "selectFirstRow": {"selectFirstRow": false},
+               "selfProvider": {"selfProvider": true},
+               "title": "Cipher key length (bits) distribution",
+               "viewDefinitionId": "cfa73a83-7a39-4653-b496-99a1d4d573b4"
+            },
+            "height": 324,
+            "states": [{
+               "value": "b%3A0",
+               "key": "perm_isDashboardTime_widget_19266d5f-3df7-44f0-b426-0e6cf7c454e4_a0859948-b9e2-467a-96c6-946936c354c0"
+            }]
+         },
+         {
+            "collapsed": false,
+            "id": "f4a750dd-5f85-47f0-b8da-ea96c2128994",
+            "gridsterCoords": {
+               "w": 2,
+               "x": 1,
+               "h": 8,
+               "y": 7
+            },
+            "type": "View",
+            "title": "Days until certificate expires",
+            "config": {
+               "refreshInterval": 300,
+               "resource": {
+                  "resourceId": "resource:id:0_::_",
+                  "traversalSpecId": "",
+                  "resourceName": "SSL-TLS-World",
+                  "resourceKindId": "002016CertificateCheckhttpsWorld_resource_kind",
+                  "id": "Ext.vcops.chrome.model.Resource-9"
+               },
+               "traversalSpecId": null,
+               "refreshContent": {"refreshContent": false},
+               "isUpdatedView": true,
+               "chartViewItems": [],
+               "selectFirstRow": {"selectFirstRow": false},
+               "selfProvider": {"selfProvider": true},
+               "title": "Days until certificate expires",
+               "viewDefinitionId": "6c369c17-09d9-423a-b509-99dfa6324f96"
+            },
+            "height": 438,
+            "states": [
+               {
+                  "value": "o%3Acolumns%3Da%253Ao%25253Aid%25253Ds%2525253ApermTableView_widget_19266d5f-3df7-44f0-b426-0e6cf7c454e4_f4a750dd-5f85-47f0-b8da-ea96c2128994-column-0%25255Ehidden%25253Db%2525253A0%255Eo%25253Aid%25253Ds%2525253ApermTableView_widget_19266d5f-3df7-44f0-b426-0e6cf7c454e4_f4a750dd-5f85-47f0-b8da-ea96c2128994-column-remainig_days1%25255Ehidden%25253Db%2525253A0",
+                  "key": "permTableView_widget_19266d5f-3df7-44f0-b426-0e6cf7c454e4_f4a750dd-5f85-47f0-b8da-ea96c2128994"
+               },
+               {
+                  "value": "b%3A0",
+                  "key": "perm_isDashboardTime_widget_19266d5f-3df7-44f0-b426-0e6cf7c454e4_f4a750dd-5f85-47f0-b8da-ea96c2128994"
+               }
+            ]
+         },
+         {
+            "collapsed": false,
+            "id": "5f10fa33-dcbb-46eb-a5b4-716a6864e8ef",
+            "gridsterCoords": {
+               "w": 3,
+               "x": 3,
+               "h": 8,
+               "y": 7
+            },
+            "type": "ResourceList",
+            "title": "Select SSL/TLS Endpoint",
+            "config": {
+               "refreshInterval": 300,
+               "resource": [],
+               "refreshContent": {"refreshContent": true},
+               "relationshipMode": {"relationshipMode": 0},
+               "title": "Select SSL/TLS Endpoint",
+               "additionalColumns": [],
+               "mode": "all",
+               "filterMode": "tagPicker",
+               "tagFilter": {
+                  "path": ["/source/kind/kind:resourceKind:id:0_::_"],
+                  "value": {
+                     "bus": [],
+                     "adapterKind": [],
+                     "kind": ["resourceKind:id:0_::_"],
+                     "exclaim": false,
+                     "healthRange": [],
+                     "maintenanceSchedule": [],
+                     "adapterInstance": [],
+                     "collector": [],
+                     "tier": [],
+                     "state": [],
+                     "tag": [],
+                     "day": [],
+                     "status": []
+                  }
+               },
+               "depth": 1,
+               "customFilter": {
+                  "filter": [],
+                  "excludedResources": null,
+                  "includedResources": null
+               },
+               "selectFirstRow": {"selectFirstRow": true},
+               "selfProvider": {"selfProvider": true}
+            },
+            "height": 438,
+            "states": [{
+               "value": "o%3Acolumns%3Da%253Ao%25253Aid%25253Ds%2525253Ah1%25255Ehidden%25253Db%2525253A1%25255Ewidth%25253Dn%2525253A100%255Eo%25253Aid%25253Ds%2525253Ah2%255Eo%25253Aid%25253Ds%2525253Ah3%25255Ehidden%25253Db%2525253A1%25255Ewidth%25253Dn%2525253A100%255Eo%25253Aid%25253Ds%2525253Ah4%255Eo%25253Aid%25253Ds%2525253Ah5%255Eo%25253Aid%25253Ds%2525253Ah6%255Eo%25253Aid%25253Ds%2525253Ah7%25255Ehidden%25253Db%2525253A1%25255Ewidth%25253Dn%2525253A100%255Eo%25253Aid%25253Ds%2525253Ah8%25255Ehidden%25253Db%2525253A1%25255Ewidth%25253Dn%2525253A100%255Eo%25253Aid%25253Ds%2525253Ah9%25255Ehidden%25253Db%2525253A1%25255Ewidth%25253Dn%2525253A100%255Eo%25253Aid%25253Ds%2525253Ah10%25255Ehidden%25253Db%2525253A1%25255Ewidth%25253Dn%2525253A100%255Eo%25253Aid%25253Ds%2525253Ah11%25255Ehidden%25253Db%2525253A1%25255Ewidth%25253Dn%2525253A100%255Eo%25253Aid%25253Ds%2525253Ah12%25255Ehidden%25253Db%2525253A1%25255Ewidth%25253Dn%2525253A100%255Eo%25253Aid%25253Ds%2525253Ah13%25255Ehidden%25253Db%2525253A1%25255Ewidth%25253Dn%2525253A100%255Eo%25253Aid%25253Ds%2525253Ah14%255Eo%25253Aid%25253Ds%2525253Ah15%25255Ehidden%25253Db%2525253A0%255Eo%25253Aid%25253Ds%2525253Ah16%25255Ehidden%25253Db%2525253A1%25255Ewidth%25253Dn%2525253A100%255Eo%25253Aid%25253Ds%2525253AresourceRating%25255Ehidden%25253Db%2525253A1%255Eo%25253Aid%25253Ds%2525253Ah18%25255Ehidden%25253Db%2525253A1%25255Ewidth%25253Dn%2525253A100%255Eo%25253Aid%25253Ds%2525253Ah19%25255Ehidden%25253Db%2525253A1%25255Ewidth%25253Dn%2525253A100%255Eo%25253Aid%25253Ds%2525253Ah20%25255Ehidden%25253Db%2525253A1%25255Ewidth%25253Dn%2525253A100%255Eo%25253Aid%25253Ds%2525253Ah21%25255Ehidden%25253Db%2525253A1%25255Ewidth%25253Dn%2525253A100%255Eo%25253Aid%25253Ds%2525253Ah22%25255Ehidden%25253Db%2525253A1%25255Ewidth%25253Dn%2525253A100%255Eo%25253Aid%25253Ds%2525253Ah23%25255Ehidden%25253Db%2525253A1%25255Ewidth%25253Dn%2525253A100%255Eo%25253Aid%25253Ds%2525253Ah24%25255Ehidden%25253Db%2525253A1%25255Ewidth%25253Dn%2525253A100%255Eo%25253Aid%25253Ds%2525253Ah25%25255Ehidden%25253Db%2525253A1%25255Ewidth%25253Dn%2525253A100%255Eo%25253Aid%25253Ds%2525253Ah26%25255Ehidden%25253Db%2525253A1%25255Ewidth%25253Dn%2525253A100%255Eo%25253Aid%25253Ds%2525253Ah27%25255Ehidden%25253Db%2525253A1%25255Ewidth%25253Dn%2525253A100%255Eo%25253Aid%25253Ds%2525253Ah28%25255Ehidden%25253Db%2525253A1%25255Ewidth%25253Dn%2525253A100%255Eo%25253Aid%25253Ds%2525253Ah29%25255Ehidden%25253Db%2525253A1%25255Ewidth%25253Dn%2525253A100%255Eo%25253Aid%25253Ds%2525253Ah30%25255Ehidden%25253Db%2525253A1%25255Ewidth%25253Dn%2525253A100%255Eo%25253Aid%25253Ds%2525253Ah31%25255Ehidden%25253Db%2525253A1%25255Ewidth%25253Dn%2525253A100%255Eo%25253Aid%25253Ds%2525253Ah32%25255Ehidden%25253Db%2525253A1%25255Ewidth%25253Dn%2525253A100%255Eo%25253Aid%25253Ds%2525253Ah33%25255Ehidden%25253Db%2525253A1%25255Ewidth%25253Dn%2525253A100%255Eo%25253Aid%25253Ds%2525253Ah34%25255Ehidden%25253Db%2525253A1%25255Ewidth%25253Dn%2525253A100%255Eo%25253Aid%25253Ds%2525253Ah35%25255Ehidden%25253Db%2525253A1%25255Ewidth%25253Dn%2525253A100%255Eo%25253Aid%25253Ds%2525253Ah36%25255Ehidden%25253Db%2525253A1%25255Ewidth%25253Dn%2525253A100%255Eo%25253Aid%25253Ds%2525253Ah37%25255Ehidden%25253Db%2525253A1%25255Ewidth%25253Dn%2525253A100%255Eo%25253Aid%25253Ds%2525253Ah38%25255Ehidden%25253Db%2525253A1%25255Ewidth%25253Dn%2525253A100%255Eo%25253Aid%25253Ds%2525253Ah39%25255Ehidden%25253Db%2525253A1%25255Ewidth%25253Dn%2525253A100%255Eo%25253Aid%25253Ds%2525253Ah40%25255Ehidden%25253Db%2525253A1%25255Ewidth%25253Dn%2525253A100%255Eo%25253Aid%25253Ds%2525253Ah41%25255Ehidden%25253Db%2525253A1%25255Ewidth%25253Dn%2525253A100%255Eo%25253Aid%25253Ds%2525253Ah42%25255Ehidden%25253Db%2525253A1%25255Ewidth%25253Dn%2525253A100%255Eo%25253Aid%25253Ds%2525253Ah43%25255Ehidden%25253Db%2525253A1%25255Ewidth%25253Dn%2525253A100%255Eo%25253Aid%25253Ds%2525253Ah44%25255Ehidden%25253Db%2525253A1%25255Ewidth%25253Dn%2525253A100%255Eo%25253Aid%25253Ds%2525253Ah45%25255Ehidden%25253Db%2525253A1%25255Ewidth%25253Dn%2525253A100%255Eo%25253Aid%25253Ds%2525253Ah46%25255Ehidden%25253Db%2525253A1%25255Ewidth%25253Dn%2525253A100%255Eo%25253Aid%25253Ds%2525253Ah47%25255Ehidden%25253Db%2525253A1%25255Ewidth%25253Dn%2525253A100",
+               "key": "permResGrid_widget_19266d5f-3df7-44f0-b426-0e6cf7c454e4_5f10fa33-dcbb-46eb-a5b4-716a6864e8ef"
+            }]
+         },
+         {
+            "collapsed": false,
+            "id": "939eaa17-8c2e-45e1-b7c2-50cd411a3cf0",
+            "gridsterCoords": {
+               "w": 4,
+               "x": 6,
+               "h": 8,
+               "y": 7
+            },
+            "type": "PropertyList",
+            "title": "SSL/TLS Endpoint details",
+            "config": {
+               "visualTheme": 0,
+               "depth": 1,
+               "refreshInterval": 300,
+               "metric": {
+                  "mode": "resourceKind",
+                  "resourceMetrics": [],
+                  "resourceKindMetrics": [
+                     {
+                        "yellowBound": null,
+                        "metricName": "Cipher bits",
+                        "metricKey": "cypher_bits",
+                        "handleOldColoring": false,
+                        "resourceKindName": "SSL-TLS Endpoint",
+                        "isStringMetric": false,
+                        "resourceKindId": "resourceKind:id:0_::_",
+                        "redBound": null,
+                        "id": "extModel24943-1",
+                        "orangeBound": null,
+                        "colorMethod": 1
+                     },
+                     {
+                        "yellowBound": null,
+                        "metricName": "Days until expiry",
+                        "metricKey": "remainig_days",
+                        "handleOldColoring": false,
+                        "resourceKindName": "SSL-TLS Endpoint",
+                        "isStringMetric": false,
+                        "resourceKindId": "resourceKind:id:0_::_",
+                        "redBound": null,
+                        "id": "extModel24943-2",
+                        "orangeBound": null,
+                        "colorMethod": 1
+                     },
+                     {
+                        "yellowBound": null,
+                        "metricName": "Certificate expires",
+                        "metricKey": "certificate_expires",
+                        "handleOldColoring": false,
+                        "resourceKindName": "SSL-TLS Endpoint",
+                        "isStringMetric": true,
+                        "resourceKindId": "resourceKind:id:0_::_",
+                        "redBound": null,
+                        "id": "extModel24943-3",
+                        "orangeBound": null,
+                        "colorMethod": 1
+                     },
+                     {
+                        "yellowBound": null,
+                        "metricName": "Certificate issuer",
+                        "metricKey": "certificate_issuer",
+                        "handleOldColoring": false,
+                        "resourceKindName": "SSL-TLS Endpoint",
+                        "isStringMetric": true,
+                        "resourceKindId": "resourceKind:id:0_::_",
+                        "redBound": null,
+                        "id": "extModel24943-4",
+                        "orangeBound": null,
+                        "colorMethod": 1
+                     },
+                     {
+                        "yellowBound": null,
+                        "metricName": "Certificate subject",
+                        "metricKey": "certificate_subject",
+                        "handleOldColoring": false,
+                        "resourceKindName": "SSL-TLS Endpoint",
+                        "isStringMetric": true,
+                        "resourceKindId": "resourceKind:id:0_::_",
+                        "redBound": null,
+                        "id": "extModel24943-5",
+                        "orangeBound": null,
+                        "colorMethod": 1
+                     },
+                     {
+                        "yellowBound": null,
+                        "metricName": "Cipher protocol label",
+                        "metricKey": "cipher_protocol_label",
+                        "handleOldColoring": false,
+                        "resourceKindName": "SSL-TLS Endpoint",
+                        "isStringMetric": true,
+                        "resourceKindId": "resourceKind:id:0_::_",
+                        "redBound": null,
+                        "id": "extModel24943-6",
+                        "orangeBound": null,
+                        "colorMethod": 1
+                     },
+                     {
+                        "yellowBound": null,
+                        "metricName": "Cipher suite",
+                        "metricKey": "cipher_suite",
+                        "handleOldColoring": false,
+                        "resourceKindName": "SSL-TLS Endpoint",
+                        "isStringMetric": true,
+                        "resourceKindId": "resourceKind:id:0_::_",
+                        "redBound": null,
+                        "id": "extModel24943-7",
+                        "orangeBound": null,
+                        "colorMethod": 1
+                     },
+                     {
+                        "yellowBound": null,
+                        "metricName": "Protocol family",
+                        "metricKey": "protocol_family",
+                        "handleOldColoring": false,
+                        "resourceKindName": "SSL-TLS Endpoint",
+                        "isStringMetric": true,
+                        "resourceKindId": "resourceKind:id:0_::_",
+                        "redBound": null,
+                        "id": "extModel24943-8",
+                        "orangeBound": null,
+                        "colorMethod": 1
+                     }
+                  ],
+                  "subMode": "resourceKindAll"
+               },
+               "resource": [],
+               "refreshContent": {"refreshContent": true},
+               "relationshipMode": {"relationshipMode": 0},
+               "customFilter": {
+                  "filter": [],
+                  "excludedResources": null,
+                  "includedResources": null
+               },
+               "selfProvider": {"selfProvider": false},
+               "title": "SSL/TLS Endpoint details",
+               "showMetricFullName": {"metricFullName": true},
+               "resInteractionMode": null
+            },
+            "height": 438,
+            "states": [{
+               "value": "o%3Acolumns%3Da%253Ao%25253Aid%25253Ds%2525253Ah1%25255Ehidden%25253Db%2525253A1%25255Ewidth%25253Dn%2525253A100%255Eo%25253Aid%25253Ds%2525253Ah2%255Eo%25253Aid%25253Ds%2525253Ah3%255Eo%25253Aid%25253Ds%2525253Ah4",
+               "key": "permMetricListDataGrid_metricGrid_widget_19266d5f-3df7-44f0-b426-0e6cf7c454e4_939eaa17-8c2e-45e1-b7c2-50cd411a3cf0"
+            }]
+         }
+      ],
+      "userId": "0bffe685-4795-4860-8c2c-3dd781529753",
+      "states": [],
+      "homeTab": false,
+      "name": "Certificate-Checker-Overview",
+      "gridsterMaxColumns": 12,
+      "rank": 0,
+      "disabled": false,
+      "id": "19266d5f-3df7-44f0-b426-0e6cf7c454e4",
+      "locked": false,
+      "dashboardNavigations": {},
+      "widgetInteractions": [{
+         "widgetIdProvider": "5f10fa33-dcbb-46eb-a5b4-716a6864e8ef",
+         "type": "resourceId",
+         "widgetIdReceiver": "939eaa17-8c2e-45e1-b7c2-50cd411a3cf0"
+      }],
+      "lastUpdateTime": 1765360247036
+   }],
+   "uuid": "7eb04b77-6431-4a93-9335-679a94ee7fa3"
+}
