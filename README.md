@@ -75,8 +75,11 @@ It is important to clone the file and edit the content to match your requirement
   192.168.20.8:443
 </httpsEndpoints>
 ``` 
+Pay attention to the , signs!
 
-
-1.  **Download the pak File from this repo: https://github.com/tkopton/certificatecheckermp/blob/main/CertificateCheck_1.0.0.pak**
-2.  **Install the Management Pack in VCF Operations**
+1.  Download the pak File from this repo: https://github.com/tkopton/certificatecheckermp/blob/main/CertificateCheck_1.0.0.pak
+2.  Install the Management Pack in VCF Operations
+3.  Create a new account uder VCF Operations Administration/Integrations using the Certificate Checker MP
+4.  Specify the name of the config file (you do not have to type in the .xml ending, something like my_ssltls_endpoints would work) containing the list of the endpoints to monitor.
+5.  Run the adapter instance on a Cloud Proxy.
 
