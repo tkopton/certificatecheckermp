@@ -50,10 +50,33 @@ https://vmware.github.io/vmware-aria-operations-integration-sdk/get_started/
 ### Installation Steps
 
 1.  **Download the pak File from this repo: https://github.com/tkopton/certificatecheckermp/blob/main/CertificateCheck_1.0.0.pak**
-    
-
-2.  **Install dependencies:**
+2.  **Install the Management Pack in VCF Operations**
 
 ## Configure
 
-To be done.
+This Management Pack uses a configuration file which will contain the endpoints with the respective TCP port which will be checked by the MP.
+The default name of the config file is `ssltls_endpoints.xml`
+The content is:
+
+``` 
+<httpsEndpoints>
+  <!-- Enter your endpoints in the following format: -->
+  <!-- remove the XML comment signs -->
+  <!-- fqdn:port -->
+</httpsEndpoints>
+``` 
+
+It is important to clone the file and edit the content to match your requirements, so it will look like e.g. something like this one:
+
+``` 
+<httpsEndpoints>
+  www.thomas-kopton.de:443,
+  gitlab.rainpole.io:443,
+  192.168.20.8:443
+</httpsEndpoints>
+``` 
+
+
+1.  **Download the pak File from this repo: https://github.com/tkopton/certificatecheckermp/blob/main/CertificateCheck_1.0.0.pak**
+2.  **Install the Management Pack in VCF Operations**
+
